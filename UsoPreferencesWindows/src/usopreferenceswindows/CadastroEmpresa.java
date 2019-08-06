@@ -19,13 +19,13 @@ public class CadastroEmpresa extends javax.swing.JFrame {
     /**
      * Creates new form CadastroEmpresa
      */
-    private Preferences prefs;
+    private final Preferences PREFERENCIA;
 
     public CadastroEmpresa() {
         initComponents();
         // Repositório das preferências do windows (regedit -> HKEY_CURRENT_USER\SOFTWARE\JavaSoft\Prefs\)
         // Isto irá definir um nó no qual as preferências podem ser armazenadas
-        prefs = Preferences.userRoot().node("/preferences/empresa");
+        PREFERENCIA = Preferences.userRoot().node("/preferences/empresa");
 
         // Carrega a empresa que já está armazenada no Preferences (Se houver)
         CarregaEmpresa();
@@ -162,9 +162,9 @@ public class CadastroEmpresa extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Informe os Campos", "Erro nos campos", JOptionPane.WARNING_MESSAGE);
         } else {
 
-            prefs.put("CNPJ", cnpjEmpresa.trim());
-            prefs.put("NOMEEMPRESA", nomeEmpresa.trim());
-            prefs.put("DATACADASTRO", dataHoje.toString());
+            PREFERENCIA.put("CNPJ", cnpjEmpresa.trim());
+            PREFERENCIA.put("NOMEEMPRESA", nomeEmpresa.trim());
+            PREFERENCIA.put("DATACADASTRO", dataHoje.toString());
 
             //Recarrega a empresa cadastrada
             CarregaEmpresa();
@@ -182,7 +182,7 @@ public class CadastroEmpresa extends javax.swing.JFrame {
         if (avaliador == JOptionPane.YES_OPTION) {
 
             try {
-                prefs.clear();
+                PREFERENCIA.clear();
             } catch (BackingStoreException ex) {
                 System.err.println("Erro ao limpar o resgistro do windows");
             }
@@ -242,9 +242,9 @@ public class CadastroEmpresa extends javax.swing.JFrame {
         areaTexto.setText("");
         areaTexto.setText("___Consta no Preferences do Windows___\n");
         // Definir uma string com o padrão
-        String retornoCNPJ = prefs.get("CNPJ", "--.---.---/------");
-        String retornoNOMEEMPRESA = prefs.get("NOMEEMPRESA", "Não Cadastrado");
-        String retornoDATACADASTRO = prefs.get("DATACADASTRO", "Não Cadastrado");
+        String retornoCNPJ = PREFERENCIA.get("CNPJ", "--.---.---/------");
+        String retornoNOMEEMPRESA = PREFERENCIA.get("NOMEEMPRESA", "Não Cadastrado");
+        String retornoDATACADASTRO = PREFERENCIA.get("DATACADASTRO", "Não Cadastrado");
 
         System.out.println("1> " + retornoCNPJ);
         System.out.println("2> " + retornoNOMEEMPRESA);
