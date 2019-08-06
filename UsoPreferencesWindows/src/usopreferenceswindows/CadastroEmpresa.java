@@ -250,9 +250,10 @@ public class CadastroEmpresa extends javax.swing.JFrame {
         System.out.println("2> " + retornoNOMEEMPRESA);
         System.out.println("3> " + retornoDATACADASTRO);
 
+        //Adiciona na área de texto o que foi encontrado no windows
         areaTexto.append("CNPJ: " + retornoCNPJ + "\n");
         areaTexto.append("Nome da Empresa: " +retornoNOMEEMPRESA+ "\n");
         areaTexto.append("Data do Cadastro: " +retornoDATACADASTRO+ "\n");
-
+       
     }
 }
